@@ -19,8 +19,9 @@ body {
     grid-column: 1/ span 1;
 }
 
+
 .text-display {
-    grid-column: 2/ span 3;
+    grid-column: 3/ span 2;
     text-align: right;
     font-size: 17px;
     /* border: 1px solid; */

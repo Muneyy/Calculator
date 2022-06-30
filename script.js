@@ -4,7 +4,8 @@ const numberButtons = Array.from(document.querySelectorAll(".number-button"));
 const operationButtons = Array.from(document.querySelectorAll(".operation-button"))
 const equalButton = document.querySelector(".equals-button");
 const clearDisplay = document.querySelector(".clear");
-const decimalButton = document.getElementById(".")
+const decimalButton = document.getElementById(".");
+const undoButton = document.querySelector(".undo");
 
 const arrayHolder = [];
 let operationToPerform = "";
@@ -50,6 +51,9 @@ function initializeButtons() {
         if (justAfterEquals == 0) {
             textPrevious.textContent = textPrevious.textContent
                                                 .concat(textDisplay.textContent);
+        }
+        if (justAfterEquals == 1) {
+            textPrevious.textContent = textDisplay.textContent;
         }
         justAfterEquals = 0;
         arrayHolder.push(Number(textDisplay.textContent));
@@ -120,6 +124,12 @@ function initializeButtons() {
         }
         alreadyDecimal = 1;
     })
+
+    undoButton.addEventListener('click', () => {
+        
+        textDisplay.textContent = textDisplay.textContent.substring(0, textDisplay.textContent.length - 1);
+        // textDisplay.textContent = "";
+    })
 }
 
 // The computations themselves only takes in two values from an array that is
@@ -127,16 +137,16 @@ function initializeButtons() {
 function operation(arr, oper) {
     if (oper === "add") {
         let sum = arr[0] + arr[1];
-        return sum;
+        return sum.toFixed(2);
     } else if (oper === "sub") {
         let sum = arr[0] - arr[1];
-        return sum;
+        return sum.toFixed(2);
     } else if (oper === "mul") {
         let sum = arr[0] * arr[1];
-        return sum;
+        return sum.toFixed(2);
     } else if (oper === "div") {
         let sum = arr[0] / arr[1];
-        return sum;
+        return sum.toFixed(2);
     };
 };
 
@@ -164,5 +174,6 @@ function removeColor() {
 
 
 initializeButtons();
+
 
 
